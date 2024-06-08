@@ -1,0 +1,23 @@
+version: "3.7"
+
+services:
+
+  price_manager_app:
+    volumes:
+      - ./media:/app/media
+    container_name: price_manager_app
+    restart: unless-stopped
+    build: ./
+    command: sh -c "python manage.py collectstatic --noinpu && python manage.py migrate && uvicorn price_manager_project.asgi:application --host 0.0.0.0 --port 8000"
+      - ./:/usr/src/app/
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    ports:
+      - 8000:8000
+    networks:
+      price_manager_network:
+
+
+networks:
+  price_manager_network:
+    driver: bridge
