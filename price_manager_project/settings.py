@@ -25,9 +25,6 @@ SECRET_KEY = 'django-insecure-20(g63kfb4jehh25u_^3_+5slxexpo!4-p&3dnoih^tf+*5myq
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
-
-
 # Application definition
 
 INSTALLED_APPS = [
@@ -125,3 +122,5 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 MEDIA_URL = "/media/"  # URL-префикс для медиа-файлов
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
+
+ALLOWED_HOSTS = os.getenv("ALLOWED_HOSTS").split(",")
