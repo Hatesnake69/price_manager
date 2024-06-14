@@ -4,6 +4,11 @@ from django.contrib import admin
 from app.models import GoodsModel, CompetitorGoodsModel
 
 
+class CompetitorGoodsInline(admin.TabularInline):
+    model = GoodsModel.competitor_goods.through
+    extra = 1
+
+
 @admin.register(GoodsModel)
 class GoodsModelAdmin(admin.ModelAdmin):
     list_display = (
@@ -11,6 +16,7 @@ class GoodsModelAdmin(admin.ModelAdmin):
         "code",
         "minimal_price",
     )
+    inlines = [CompetitorGoodsInline]
 
 
 @admin.register(CompetitorGoodsModel)
