@@ -12,7 +12,11 @@ class GoodsModel(models.Model):
     minimal_price = models.IntegerField(null=False, verbose_name='Минимальная цена')
 
     competitor_goods = models.ManyToManyField(
-        CompetitorGoodsModel, related_name='goods', verbose_name='Товары конкурентов'
+        CompetitorGoodsModel,
+        related_name='goods',
+        verbose_name='Товары конкурентов',
+        blank=True,
+        null=True,
     )
 
     def __str__(self):
