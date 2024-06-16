@@ -9,7 +9,9 @@ class GoodsModel(models.Model):
     store_good_id = models.IntegerField(null=False, unique=True, verbose_name='Id продукта из магазина')
     name = models.CharField(max_length=256, unique=True, verbose_name='Название')
     code = models.CharField(max_length=256, unique=True, verbose_name='Код')
-    minimal_price = models.IntegerField(null=False, verbose_name='Минимальная цена')
+    minimal_price = models.IntegerField(verbose_name='Минимальная цена')
+    current_price = models.IntegerField(verbose_name='Актуальная цена')
+    updated_at = models.DateTimeField(verbose_name='Обновлено в', auto_now=True)
 
     competitor_goods = models.ManyToManyField(
         CompetitorGoodsModel,
