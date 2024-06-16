@@ -15,6 +15,7 @@ class GoodsModelAdmin(admin.ModelAdmin):
         "name",
         "code",
         "minimal_price",
+        "current_price",
     )
     exclude = ("competitor_goods", )
     inlines = [CompetitorGoodsInline]
@@ -24,4 +25,5 @@ class GoodsModelAdmin(admin.ModelAdmin):
 class CompetitorGoodsModelAdmin(admin.ModelAdmin):
     list_display = (
         "url",
+        "current_price",
     )
