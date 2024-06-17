@@ -1,6 +1,5 @@
 from django.contrib import admin
 
-# Register your models here.
 from app.models import GoodsModel, CompetitorGoodsModel
 
 
@@ -14,6 +13,7 @@ class GoodsModelAdmin(admin.ModelAdmin):
     list_display = (
         "name",
         "code",
+        "price_step",
         "minimal_price",
         "current_price",
     )

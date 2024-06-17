@@ -12,6 +12,7 @@ class GoodsModel(models.Model):
     minimal_price = models.IntegerField(verbose_name='Минимальная цена')
     current_price = models.IntegerField(verbose_name='Актуальная цена')
     updated_at = models.DateTimeField(verbose_name='Обновлено в', auto_now=True)
+    price_step = models.IntegerField(default=10, verbose_name='Шаг цены')
 
     competitor_goods = models.ManyToManyField(
         CompetitorGoodsModel,
