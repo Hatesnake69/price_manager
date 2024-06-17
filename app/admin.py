@@ -25,6 +25,7 @@ class GoodsModelAdmin(admin.ModelAdmin):
     def competitor_goods_list(self, obj):
         competitors = obj.competitor_goods.all()
         return format_html('<br>'.join([f'{competitor}' for competitor in competitors]))
+    competitor_goods_list.short_description = 'Товары конкурентов'
 
 
 @admin.register(CompetitorGoodsModel)
