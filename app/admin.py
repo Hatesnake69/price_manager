@@ -1,4 +1,5 @@
 from django.contrib import admin
+from django.utils.html import format_html
 
 from app.models import GoodsModel, CompetitorGoodsModel
 
@@ -16,9 +17,14 @@ class GoodsModelAdmin(admin.ModelAdmin):
         "price_step",
         "minimal_price",
         "current_price",
+        "competitor_goods_list"
     )
     exclude = ("competitor_goods", )
     inlines = [CompetitorGoodsInline]
+
+    def competitor_goods_list(self, obj):
+        competitors = obj.competitor_goods.all()
+        return format_html('<br>'.join([f'{competitor}' for competitor in competitors]))
 
 
 @admin.register(CompetitorGoodsModel)
