@@ -9,3 +9,7 @@ class CompetitorGoodsModel(models.Model):
 
     def __str__(self):
         return f"цена: {self.current_price}, ссылка: {self.url}"
+
+    class Meta:
+        # Указывает имя таблицы в базе данных
+        db_table = "competitor_goods"
