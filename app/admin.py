@@ -1,12 +1,24 @@
 from django.contrib import admin
 from django.utils.html import format_html
 
-from app.models import GoodsModel, CompetitorGoodsModel
+from app.models import GoodsModel, CompetitorGoodsModel, KaspiGoodsModel
 
 
 class CompetitorGoodsInline(admin.TabularInline):
     model = GoodsModel.competitor_goods.through
     extra = 1
+
+
+@admin.register(KaspiGoodsModel)
+class KaspiGoodsModelAdmin(admin.ModelAdmin):
+    list_display = (
+        "sku",
+        "model",
+        "competitors_prices",
+        "current_price",
+        "min_price",
+        "price_step",
+    )
 
 
 @admin.register(GoodsModel)
