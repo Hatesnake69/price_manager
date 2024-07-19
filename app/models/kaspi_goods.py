@@ -17,6 +17,7 @@ class KaspiGoodsModel(models.Model):
     competitors_prices = models.JSONField(verbose_name='Цены конкурентов', null=True)
     min_price = models.IntegerField(verbose_name='Минимальная цена')
     price_step = models.IntegerField(verbose_name='Шаг цены')
+    kaspi_offer_url = models.CharField(max_length=256, null=True)
 
     def __str__(self):
         return f"sku: {self.sku} model: {self.model}"

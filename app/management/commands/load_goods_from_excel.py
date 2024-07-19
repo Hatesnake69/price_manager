@@ -5,7 +5,7 @@ from app.models import KaspiGoodsModel
 
 
 class Command(BaseCommand):
-    help = 'Описание твоей команды'
+    help = 'Загружает товары из экселя в модели каспи товаров'
 
     def add_arguments(self, parser):
         parser.add_argument('file_path', type=str)
