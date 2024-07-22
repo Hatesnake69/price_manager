@@ -42,7 +42,9 @@ class Command(BaseCommand):
         print(f"Google page title: {driver.title}")
         driver.get("https://kaspi.kz/shop/search/?text=105509884&q=%3AavailableInZones%3AMagnum_ZONE1&sort=relevance&filteredByCategory=false&sc=")
         WebDriverWait(driver, 60).until(EC.presence_of_element_located((By.CLASS_NAME, "item-card__info")))
-        print(f"KASPI page title: {driver.title}")
+        title = driver.execute_script("return document.title;")
+
+        print(f"KASPI page title: {title}")
         all_goods: list[KaspiGoodsModel] = KaspiGoodsModel.objects.all()
         for good in all_goods:
             if "_Ledvisionkz" in good.sku:
