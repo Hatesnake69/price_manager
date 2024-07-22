@@ -32,7 +32,8 @@ class Command(BaseCommand):
         print(f"Google page title: {driver.title}")
         driver.get("https://www.youtube.com")
         print(f"Youtube page title: {driver.title}")
-
+        driver.get("https://www.wildberries.ru/catalog/54780925/detail.aspx?targetUrl=SP")
+        print(f"WB page title: {driver.title}")
         all_goods: list[KaspiGoodsModel] = KaspiGoodsModel.objects.all()
         for good in all_goods:
             if "_Ledvisionkz" in good.sku:
