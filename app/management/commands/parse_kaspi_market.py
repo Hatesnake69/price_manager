@@ -25,7 +25,7 @@ class Command(BaseCommand):
         chrome_options.add_argument("--disable-gpu")
         chrome_options.binary_location = "/usr/bin/google-chrome"  # Укажите путь к Chrome
         driver = webdriver.Remote(
-            command_executor="http://localhost:4444/wd/hub",
+            command_executor="http://selenium_hub:4444/wd/hub",
             options=chrome_options
         )
 
