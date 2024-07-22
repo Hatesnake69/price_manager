@@ -18,16 +18,13 @@ class Command(BaseCommand):
     help = 'Спарсить цены с каспи на товары'
 
     def handle(self, *args, **kwargs):
-        chrome_options = Options()
-        chrome_options.add_argument("--headless")  # Запуск в безголовом режиме
-        chrome_options.add_argument("--no-sandbox")
-        chrome_options.add_argument("--disable-dev-shm-usage")
-        chrome_options.add_argument("--disable-gpu")
-        chrome_options.binary_location = "/usr/bin/google-chrome"  # Укажите путь к Chrome
-        driver = webdriver.Remote(
-            command_executor="http://selenium_hub:4444/wd/hub",
-            options=chrome_options
-        )
+        # chrome_options = Options()
+        # chrome_options.add_argument("--headless")  # Запуск в безголовом режиме
+        # chrome_options.add_argument("--no-sandbox")
+        # chrome_options.add_argument("--disable-dev-shm-usage")
+        # chrome_options.add_argument("--disable-gpu")
+        # chrome_options.binary_location = "/usr/bin/google-chrome"  # Укажите путь к Chrome
+        driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()))
         driver.get("https://www.google.com")
         print(f"Google page title: {driver.title}")
 
