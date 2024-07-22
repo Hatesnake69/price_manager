@@ -38,7 +38,7 @@ class Command(BaseCommand):
         chrome_options.add_argument("sec-fetch-site=none")
         chrome_options.add_argument("sec-fetch-user=?1")
         chrome_options.add_argument("priority=u=0, i")
-        # chrome_options.binary_location = "/usr/bin/google-chrome"
+        chrome_options.binary_location = "/usr/bin/google-chrome"
         driver = webdriver.Chrome(
             service=Service(ChromeDriverManager().install()),
             options=chrome_options
