@@ -40,7 +40,7 @@ class Command(BaseCommand):
         driver.get("https://www.google.com")
         print(f"Google page title: {driver.title}")
         driver.get("https://kaspi.kz/shop/search/?text=105509884&q=%3AavailableInZones%3AMagnum_ZONE1&sort=relevance&filteredByCategory=false&sc=")
-        WebDriverWait(driver, 30).until(EC.presence_of_element_located((By.TAG_NAME, "title")))
+        WebDriverWait(driver, 40).until(EC.presence_of_element_located((By.TAG_NAME, "title")))
         print(f"KASPI page title: {driver.title}")
         all_goods: list[KaspiGoodsModel] = KaspiGoodsModel.objects.all()
         for good in all_goods:
