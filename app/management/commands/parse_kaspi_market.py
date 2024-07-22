@@ -36,6 +36,8 @@ class Command(BaseCommand):
                 print(f"current on {good.model}, {goods_sku}")
                 url = f"https://kaspi.kz/shop/search/?text={goods_sku}&q=%3AavailableInZones%3AMagnum_ZONE1&sort=relevance&filteredByCategory=false&sc="
                 driver.get(url)
+                print(f"Opened URL: {url}")
+                print(f"Page title: {driver.title}")
                 try:
                     first_product = WebDriverWait(driver, 20).until(
                         EC.presence_of_element_located((By.CSS_SELECTOR, 'a[href*="/shop/p/"]'))
