@@ -1,3 +1,5 @@
+import time
+
 from django.core.management.base import BaseCommand
 
 from selenium import webdriver
@@ -30,6 +32,8 @@ class Command(BaseCommand):
                 goods_sku = good.sku.split("_")[0]
                 url = f"https://kaspi.kz/shop/search/?text={goods_sku}&q=%3AavailableInZones%3AMagnum_ZONE1&sort=relevance&filteredByCategory=false&sc="
                 driver.get(url)
+                time.sleep(10)
+                print("sleep 10")
                 first_product = driver.find_element(By.CSS_SELECTOR, 'a[href*="/shop/p/"]')
                 # Получение ссылки
                 product_link = first_product.get_attribute('href')
