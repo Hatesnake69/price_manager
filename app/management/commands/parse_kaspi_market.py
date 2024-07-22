@@ -28,6 +28,8 @@ class Command(BaseCommand):
             command_executor="http://selenium_hub:4444/wd/hub",
             options=chrome_options
         )
+        driver.get("https://www.google.com")
+        print(f"Google page title: {driver.title}")
 
         all_goods: list[KaspiGoodsModel] = KaspiGoodsModel.objects.all()
         for good in all_goods:
