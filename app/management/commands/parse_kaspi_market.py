@@ -6,6 +6,7 @@ from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.support.wait import WebDriverWait
 from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.chrome.options import Options
 
 
 from app.models import KaspiGoodsModel
@@ -15,7 +16,13 @@ class Command(BaseCommand):
     help = 'Спарсить цены с каспи на товары'
 
     def handle(self, *args, **kwargs):
-        driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()))
+        chrome_options = Options()
+        chrome_options.binary_location = "/usr/bin/google-chrome"  # Укажите путь к Chrome
+
+        driver = webdriver.Chrome(
+            service=Service(ChromeDriverManager().install()),
+            options=chrome_options
+        )
 
 
         all_goods: list[KaspiGoodsModel] = KaspiGoodsModel.objects.all()
