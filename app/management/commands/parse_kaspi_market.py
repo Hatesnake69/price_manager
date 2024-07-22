@@ -30,6 +30,8 @@ class Command(BaseCommand):
         )
         driver.get("https://www.google.com")
         print(f"Google page title: {driver.title}")
+        driver.get("https://www.youtube.com")
+        print(f"Youtube page title: {driver.title}")
 
         all_goods: list[KaspiGoodsModel] = KaspiGoodsModel.objects.all()
         for good in all_goods:
