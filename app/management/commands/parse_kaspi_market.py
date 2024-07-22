@@ -30,14 +30,12 @@ class Command(BaseCommand):
                 goods_sku = good.sku.split("_")[0]
                 url = f"https://kaspi.kz/shop/search/?text={goods_sku}&q=%3AavailableInZones%3AMagnum_ZONE1&sort=relevance&filteredByCategory=false&sc="
                 driver.get(url)
-                try:
-                    first_product = driver.find_element(By.CSS_SELECTOR, 'a[href*="/shop/p/"]')
-                    # Получение ссылки
-                    product_link = first_product.get_attribute('href')
-                    good.kaspi_offer_url = product_link
-                    good.save()
-                    print(f"offer url was added for good {good.model}")
-                    print(f"{good.kaspi_offer_url}")
-                except Exception as e:
-                    print(f"Error occurred for good {good.model}: {e}")
+                first_product = driver.find_element(By.CSS_SELECTOR, 'a[href*="/shop/p/"]')
+                # Получение ссылки
+                product_link = first_product.get_attribute('href')
+                good.kaspi_offer_url = product_link
+                good.save()
+                print(f"offer url was added for good {good.model}")
+                print(f"{good.kaspi_offer_url}")
+
         self.stdout.write(self.style.SUCCESS('Команда выполнена успешно!'))
