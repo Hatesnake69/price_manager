@@ -42,6 +42,7 @@ class Command(BaseCommand):
         driver.get("https://www.youtube.com")
         print(f"Youtube page title: {driver.title}")
         driver.get("https://www.wildberries.ru/catalog/54780925/detail.aspx?targetUrl=SP")
+        WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.TAG_NAME, "title")))
         print(f"WB page title: {driver.title}")
         all_goods: list[KaspiGoodsModel] = KaspiGoodsModel.objects.all()
         for good in all_goods:
