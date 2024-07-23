@@ -29,6 +29,9 @@ RUN wget -O /tmp/chromedriver.zip https://chromedriver.storage.googleapis.com/12
     && unzip /tmp/chromedriver.zip -d /usr/local/bin/ \
     && rm /tmp/chromedriver.zip
 
+# Установка прав на выполнение для Google Chrome
+RUN chmod +x /usr/bin/google-chrome
+
 WORKDIR /app
 COPY poetry.lock pyproject.toml /app/
 
