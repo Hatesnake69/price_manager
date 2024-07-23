@@ -31,26 +31,26 @@ services:
     networks:
       price_manager_network:
 
-  selenium_hub:
-    image: selenium/hub
-    networks:
-      price_manager_network:
-    ports:
-      - "4442:4442"
-      - "4443:4443"
-      - "4444:4444"
-
-  chrome_node:
-    image: selenium/node-chrome
-    networks:
-      price_manager_network:
-    shm_size: 2gb
-    depends_on:
-      - selenium_hub
-    environment:
-      - SE_EVENT_BUS_HOST=selenium_hub
-      - SE_EVENT_BUS_PUBLISH_PORT=4442
-      - SE_EVENT_BUS_SUBSCRIBE_PORT=4443
+#  selenium_hub:
+#    image: selenium/hub
+#    networks:
+#      price_manager_network:
+#    ports:
+#      - "4442:4442"
+#      - "4443:4443"
+#      - "4444:4444"
+#
+#  chrome_node:
+#    image: selenium/node-chrome
+#    networks:
+#      price_manager_network:
+#    shm_size: 2gb
+#    depends_on:
+#      - selenium_hub
+#    environment:
+#      - SE_EVENT_BUS_HOST=selenium_hub
+#      - SE_EVENT_BUS_PUBLISH_PORT=4442
+#      - SE_EVENT_BUS_SUBSCRIBE_PORT=4443
 
 
 networks:
