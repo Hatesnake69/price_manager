@@ -21,6 +21,8 @@ class Command(BaseCommand):
         chrome_options = Options()
         chrome_options.add_argument("--headless")  # Если нужно запускать браузер в фоновом режиме
         chrome_options.add_argument("--disable-gpu")  # Отключение GPU для совместимости
+        chrome_options.add_argument("--no-sandbox")  # Отключение песочницы
+        chrome_options.add_argument("--disable-dev-shm-usage")  # Использование /tmp вместо /dev/shm
 
         # Добавление заголовков
         chrome_options.add_argument(
@@ -38,9 +40,7 @@ class Command(BaseCommand):
         chrome_options.add_argument("sec-fetch-site=none")
         chrome_options.add_argument("sec-fetch-user=?1")
         chrome_options.add_argument("priority=u=0, i")
-        chrome_options.binary_location = "/usr/bin/google-chrome"
         driver = webdriver.Chrome(
-            service=Service(ChromeDriverManager().install()),
             options=chrome_options
         )
         driver.get("https://www.google.com")
