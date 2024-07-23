@@ -19,27 +19,10 @@ class Command(BaseCommand):
 
     def handle(self, *args, **kwargs):
         chrome_options = Options()
-        chrome_options.add_argument("--headless")  # Если нужно запускать браузер в фоновом режиме
-        chrome_options.add_argument("--disable-gpu")  # Отключение GPU для совместимости
-        chrome_options.add_argument("--no-sandbox")  # Отключение песочницы
-        chrome_options.add_argument("--disable-dev-shm-usage")  # Использование /tmp вместо /dev/shm
-
-        # Добавление заголовков
-        chrome_options.add_argument(
-            "user-agent=Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:128.0) Gecko/20100101 Firefox/128.0")
-        chrome_options.add_argument(
-            "accept=text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/png,image/svg+xml,*/*;q=0.8")
-        chrome_options.add_argument("accept-language=en-US,en;q=0.5")
-        chrome_options.add_argument("accept-encoding=gzip, deflate, br, zstd")
-        chrome_options.add_argument("connection=keep-alive")
-        chrome_options.add_argument(
-            "cookie=ks.tg=9; k_stat=7f6bc9ec-d0cf-40d7-a919-6fc5e622c2ab; kaspi.storefront.cookie.city=750000000; current-action-name=Index")
-        chrome_options.add_argument("upgrade-insecure-requests=1")
-        chrome_options.add_argument("sec-fetch-dest=document")
-        chrome_options.add_argument("sec-fetch-mode=navigate")
-        chrome_options.add_argument("sec-fetch-site=none")
-        chrome_options.add_argument("sec-fetch-user=?1")
-        chrome_options.add_argument("priority=u=0, i")
+        chrome_options.add_argument("--headless")  # Запуск в фоновом режиме
+        chrome_options.add_argument("--disable-gpu")
+        chrome_options.add_argument("--no-sandbox")
+        chrome_options.add_argument("--disable-dev-shm-usage")
         driver = webdriver.Chrome(
             options=chrome_options
         )
