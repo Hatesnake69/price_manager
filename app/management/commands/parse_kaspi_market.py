@@ -34,7 +34,7 @@ class Command(BaseCommand):
         driver.get("https://www.google.com")
         print(f"Google page title: {driver.title}")
         driver.get("https://kaspi.kz/shop/search/?text=105509884&q=%3AavailableInZones%3AMagnum_ZONE1&sort=relevance&filteredByCategory=false&sc=")
-        print(f"KASPI page_source: {driver.page_source}")
+        print(f"KASPI page_source: {driver.title}")
         all_goods: list[KaspiGoodsModel] = KaspiGoodsModel.objects.all()
         for good in all_goods:
             if "_Ledvisionkz" in good.sku:
