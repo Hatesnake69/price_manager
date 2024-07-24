@@ -24,14 +24,8 @@ RUN wget -q -O - https://dl.google.com/linux/linux_signing_key.pub | apt-key add
     && apt-get update \
     && apt-get install -y google-chrome-stable
 
-# Установка последней версии ChromeDriver
-RUN LATEST_CHROMEDRIVER_VERSION=$(curl -sS chromedriver.storage.googleapis.com/LATEST_RELEASE) \
-    && wget -O /tmp/chromedriver.zip https://chromedriver.storage.googleapis.com/$LATEST_CHROMEDRIVER_VERSION/chromedriver_linux64.zip \
-    && unzip /tmp/chromedriver.zip -d /usr/local/bin/ \
-    && rm /tmp/chromedriver.zip
-
-# Установка прав на выполнение для Google Chrome
-RUN chmod +x /usr/bin/google-chrome
+# Установка chromedriver_autoinstaller
+RUN pip install chromedriver-autoinstaller
 
 WORKDIR /app
 COPY poetry.lock pyproject.toml /app/
@@ -39,3 +33,6 @@ COPY poetry.lock pyproject.toml /app/
 RUN poetry config virtualenvs.create false && poetry install --no-interaction --no-ansi --no-root
 
 COPY . /app
+
+# Автоматическая установка совместимой версии ChromeDriver
+RUN python -c "import chromedriver_autoinstaller; chromedriver_autoinstaller.install()"
