@@ -8,6 +8,7 @@ class KaspiGoodsModel(models.Model):
     model = models.CharField(max_length=256, null=False)
     brand = models.CharField(max_length=256, null=False)
     price = models.IntegerField()
+    prev_price = models.IntegerField(null=True)
     pp1 = models.CharField(max_length=256, null=True)
     pp2 = models.CharField(max_length=256, null=True)
     pp3 = models.CharField(max_length=256, null=True)
@@ -18,6 +19,7 @@ class KaspiGoodsModel(models.Model):
     min_price = models.IntegerField(verbose_name='Минимальная цена')
     price_step = models.IntegerField(verbose_name='Шаг цены')
     kaspi_offer_url = models.CharField(max_length=256, null=True)
+    no_competitors_flag = models.BooleanField(default=False)
 
     def __str__(self):
         return f"sku: {self.sku} model: {self.model}"

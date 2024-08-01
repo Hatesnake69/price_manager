@@ -134,6 +134,8 @@ DATABASES = {
         "PORT": os.getenv("POSTGRES_PORT"),
     }
 }
+bot_token = os.getenv("BOT_TOKEN")
+admin_chat_id = os.getenv("ADMIN_CHAT_ID")
 # DATABASES = {
 #     "default": {
 #         "ENGINE": "django.db.backends.sqlite3",
