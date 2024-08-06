@@ -17,6 +17,7 @@ class KaspiGoodsModel(models.Model):
     preorder = models.CharField(max_length=256, null=True)
     competitors_prices = models.JSONField(verbose_name='Цены конкурентов', null=True)
     min_price = models.IntegerField(verbose_name='Минимальная цена')
+    min_price_too_high_flag = models.BooleanField(verbose_name='Минимальная цена завышена', default=False)
     price_step = models.IntegerField(verbose_name='Шаг цены')
     kaspi_offer_url = models.CharField(max_length=256, null=True)
     no_competitors_flag = models.BooleanField(default=False)

@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 import os
 from pathlib import Path
 
+import pytz
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -136,6 +137,13 @@ DATABASES = {
 }
 bot_token = os.getenv("BOT_TOKEN")
 admin_chat_id = os.getenv("ADMIN_CHAT_ID")
+
+company_id = os.getenv("COMPANY_ID")
+store_1_id = os.getenv("STORE_1_ID")
+store_2_id = os.getenv("STORE_2_ID")
+kaspi_prices_file_path = os.getenv("KASPI_PRICES_FILE_PATH")
+
+tz = pytz.timezone("Asia/Almaty")
 # DATABASES = {
 #     "default": {
 #         "ENGINE": "django.db.backends.sqlite3",

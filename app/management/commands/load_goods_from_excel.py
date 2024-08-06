@@ -1,3 +1,5 @@
+import traceback
+
 import openpyxl
 from django.core.management.base import BaseCommand
 
@@ -37,12 +39,14 @@ class Command(BaseCommand):
                     "pp4": row[7],
                     "pp5": row[7],
                     "preorder": row[8],
-                    "min_price": round(row[3] * 7/10),
+                    "min_price": round(row[3] * 0.7),
                     "price_step": 0,
                 }
                 KaspiGoodsModel.objects.create(
                     **good
                 )
             except:
-                print("error occurred")
+                print(
+                    f"An error occurred: \n{traceback.format_exc()}"
+                )
         self.stdout.write(self.style.SUCCESS('Команда выполнена успешно!'))

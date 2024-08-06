@@ -5,6 +5,7 @@ services:
   price_manager_app:
     volumes:
       - ./media:/app/media
+      - ./:/app
     container_name: price_manager_app
     restart: unless-stopped
     build: ./

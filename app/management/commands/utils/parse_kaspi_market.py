@@ -1,28 +1,26 @@
 import re
+import sys
 import time
 import traceback
-from math import inf
+from sys import stdout
 
 import selenium
-from django.core.management.base import BaseCommand
+from django.core.management.base import OutputWrapper
 
 from selenium import webdriver
 from selenium.webdriver.common.by import By
-from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.support.wait import WebDriverWait
-from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.support import expected_conditions as EC
 
 from app.models import KaspiGoodsModel
 
 
-class Command(BaseCommand):
-    driver: webdriver.Chrome
+class KaspiMarketParser:
     counter = 2
-    help = 'Спарсить цены с каспи на товары'
+    stdout = OutputWrapper(stdout or sys.stdout)
 
-    def handle(self, *args, **kwargs):
+    def __init__(self):
         chrome_options = Options()
         chrome_options.add_argument("--headless")  # Запуск в фоновом режиме
         chrome_options.add_argument("--disable-gpu")
@@ -36,6 +34,8 @@ class Command(BaseCommand):
         self.driver = webdriver.Chrome(
             options=chrome_options
         )
+
+    def run(self):
         all_goods: list[KaspiGoodsModel] = KaspiGoodsModel.objects.all()
         for good in all_goods:
             if not good.kaspi_offer_url:
@@ -43,7 +43,7 @@ class Command(BaseCommand):
             else:
                 self.parse_good(good=good)
 
-        self.stdout.write(self.style.SUCCESS('Команда выполнена успешно!'))
+        self.stdout.write('Команда выполнена успешно!')
 
     def get_good_offer_url(self, good: KaspiGoodsModel):
         for i in range(self.counter):
