@@ -55,7 +55,7 @@ class KaspiMarketParser:
                 print(f"Opened URL: {url}")
                 print(f"Page title: {self.driver.title}")
                 try:
-                    first_product = WebDriverWait(self.driver, 5).until(
+                    first_product = WebDriverWait(self.driver, 30).until(
                         EC.presence_of_element_located((By.CSS_SELECTOR, 'a[href*="/shop/p/"]'))
                     )
                     # Получение ссылки
